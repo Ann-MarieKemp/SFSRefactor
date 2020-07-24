@@ -10,15 +10,27 @@
   flex-direction: column;
   width: 50vw;
 }
-
-th {
-  border: 1px solid black;
-  padding: 3px;
+.table-format {
+  display: flex;
+  flex-direction: column;
 }
-td {
+.subtr-div {
+  display: flex;
+}
+.tr-div {
+  display: flex;
+}
+.th-div {
+  border: 1px solid black;
+  padding: 2px;
+  width: 150px;
+  font-weight: bold;
+}
+.td-div {
   border: 1px solid grey;
-  padding: 3px;
-  margin-right: 10px;
+  padding: 2px;
+  margin: 1px 1px;
+  width: 148px;
 }
 
 .button-box {
@@ -54,6 +66,8 @@ p {
 #totalValue {
   font-weight: bold;
 }
-td input {
+input {
   border: none;
+  margin: 2px 5px;
+  align-self: center;
 }
