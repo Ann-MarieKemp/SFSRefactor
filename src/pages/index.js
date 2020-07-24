@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react"
 import useAPI from "../hooks/useAPI"
-import styles from "./styles/index.modules.css"
+import styles from "../styles/index.modules.css"
+import Table from "../components/table"
+import Buttons from "../components/buttons"
+import Totals from "../components/totals"
+import Counts from "../components/counts"
 
 export default function Home() {
   const apiDebts = useAPI()
@@ -76,68 +80,16 @@ export default function Home() {
   }
 
   return (
-    <div className="main-content-box">
-      <table id="table-format">
-        <thead>
-          <tr>
-            <th>
-              <input
-                className="checkbox"
-                type="checkbox"
-                onClick={clearCheckboxes}
-              />
-            </th>
-            <th>Creditor</th>
-            <th>First Name</th>
-            <th>LastName</th>
-            <th>Min Pay%</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {debts.map((debt, idx) => {
-            const {
-              firstName,
-              lastName,
-              creditorName,
-              minPaymentPercentage,
-              balance,
-              isChecked,
-            } = debt
-            return (
-              <React.Fragment key={idx}>
-                <tr>
-                  <td>
-                    <input
-                      className="checkbox"
-                      type="checkbox"
-                      checked={isChecked}
-                      name={idx}
-                      onChange={handleSelect}
-                    />
-                  </td>
-                  <td>{creditorName}</td>
-                  <td>{firstName}</td>
-                  <td>{lastName}</td>
-                  <td>{minPaymentPercentage}</td>
-                  <td>{balance}</td>
-                </tr>
-              </React.Fragment>
-            )
-          })}
-        </tbody>
-      </table>
-      <div className="button-box">
-        <button onClick={addRow}>Add Debt</button>
-        <button onClick={removeRow}>Remove Debt</button>
-      </div>
-      <div className="total-box">
-        <p id="total">Total</p>
-        <p id="totalValue">${total}</p>
-      </div>
-      <div className="count-box">
-        <p>Total Row Count:{debts.length} </p>
-        <p>Check Row Count: {checkboxCount}</p>
+    <div>
+      <Table
+        debts={debts}
+        clearCheckboxes={clearCheckboxes}
+        handleSelect={handleSelect}
+      />
+      <div className="main-content-box">
+        <Buttons addRow={addRow} removeRow={removeRow} />
+        <Totals total={total} />
+        <Counts debts={debts} checkboxCount={checkboxCount} />
       </div>
     </div>
   )
